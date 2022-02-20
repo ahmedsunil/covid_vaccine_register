@@ -1,0 +1,54 @@
+<x-app-layout>
+    <x-slot name="header">
+        <div class="grid grid-cols-2 gap-2">
+            <div>
+                <form action="{{ route('staff.index') }}" method="GET">
+                    @include('staff._filter')
+                </form>
+            </div>
+            <div class="flex flex-row-reverse">
+                <x-link-button link="{{ route('vaccinations.create') }}" class="px-5 py-2 text-sm bg-teal-800 text-white rounded-md hover:bg-teal-700">Add</x-link-button>
+            </div>
+        </div>
+    </x-slot>
+
+    <div class="py-8 md:pb-12 mx-4 md:mx-10">
+        <div class="mx-auto py-5 sm:px-6 lg:px-8">
+            <div class="container mx-auto">
+                <x-table>
+                    <x-slot name="thead">
+                        <x-th>Patient</x-th>
+                        <x-th>Vaccine</x-th>
+                        <x-th>Vaccinated By</x-th>
+                        <x-th>Dose</x-th>
+                        <x-th>Date of Vaccination</x-th>
+                        <x-th></x-th>
+                    </x-slot>
+                    @foreach($vaccinations as $vaccination)
+                        <tr class="odd:bg-white even:bg-slate-200">
+                            <x-td>{{ $vaccination->patient->government_id }} - {{ $vaccination->patient->name }} </x-td>
+                            <x-td>{{ $vaccination->vaccine->brand }}</x-td>
+                            <x-td>{{ $vaccination->staff->name }}</x-td>
+                            <x-td>{{ $vaccination->dose }}</x-td>
+                            <x-td>{{ $vaccination->date_for_vaccination }}</x-td>
+                            <x-td>
+                                <div class="flex flex-row justify-center">
+                                    <a href="{{ route('vaccinations.show', $vaccination->id) }}" class="px-4 bg-blue-300 rounded-md px-4 py-2 font-bold text-blue-700 hover:text-blue-800 hover:bg-blue-400">View</a>
+                                    <a href="{{ route('vaccines.edit', $vaccination->id) }}" class="mx-2 px-4 bg-teal-300 rounded-md px-4 py-2 font-bold text-teal-700 hover:text-teal-800 hover:bg-teal-400">Edit</a>
+                                    <form action="{{ route('vaccines.destroy', $vaccination->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="bg-red-300 rounded-md px-4 py-2 font-bold text-red-700 hover:text-red-800 hover:bg-red-400">Delete</button>
+                                    </form>
+                                </div>
+                            </x-td>
+                        </tr>
+                    @endforeach
+                </x-table>
+                <div class="py-4">
+                    {{ $vaccinations->links() }}
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
