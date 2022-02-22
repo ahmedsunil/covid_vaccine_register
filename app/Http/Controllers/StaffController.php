@@ -19,7 +19,8 @@ class StaffController extends Controller
 
     public function create()
     {
-        return view('staff.create');
+        $designations = config('defaults.designations');
+        return view('staff.create',compact('designations'));
     }
 
     public function store(StaffStoreRequest $request)

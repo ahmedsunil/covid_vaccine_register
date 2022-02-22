@@ -34,7 +34,7 @@
                             <x-td>
                                 <div class="flex flex-row justify-center">
                                     <a href="{{ route('vaccinations.show', $vaccination->id) }}" class="px-4 bg-blue-300 rounded-md px-4 py-2 font-bold text-blue-700 hover:text-blue-800 hover:bg-blue-400">View</a>
-                                    <a href="{{ route('vaccines.edit', $vaccination->id) }}" class="mx-2 px-4 bg-teal-300 rounded-md px-4 py-2 font-bold text-teal-700 hover:text-teal-800 hover:bg-teal-400">Edit</a>
+                                    <a href="{{ route('vaccinations.edit', $vaccination->id) }}" class="mx-2 px-4 bg-teal-300 rounded-md px-4 py-2 font-bold text-teal-700 hover:text-teal-800 hover:bg-teal-400">Edit</a>
                                     <form action="{{ route('vaccines.destroy', $vaccination->id) }}" method="post">
                                         @csrf
                                         @method('DELETE')

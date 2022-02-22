@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('vaccine_id')->constrained()->cascadeOnDelete();
             $table->foreignId('patient_id')->constrained()->cascadeOnDelete();
             $table->foreignId('staff_id')->nullable()->constrained('staff')->nullOnDelete();
-            $table->dateTime('date_for_vaccination');
+            $table->date('date_for_vaccination');
             $table->string('dose');
             $table->text('remarks');
             $table->timestamps();

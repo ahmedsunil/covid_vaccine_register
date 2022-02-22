@@ -15,7 +15,7 @@
                     <div class="col-span-4 sm:col-span-3">
                         <label for="patient_id" class="block text-sm font-medium text-gray-700">Patient</label>
                         <select id="patient_id" name="patient_id" autocomplete="patient_id-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            @foreach($patients as $patient)
+                            @foreach($viewModel->patients() as $patient)
                                 <option value="{{ $patient->id }}"> {{ $patient->government_id }} - {{ $patient->name }} </option>
                             @endforeach
                         </select>
@@ -26,7 +26,7 @@
                     <div class="col-span-4 sm:col-span-3">
                         <label for="vaccine_id" class="block text-sm font-medium text-gray-700">Vaccine</label>
                         <select id="vaccine_id" name="vaccine_id" autocomplete="vaccine_id-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            @foreach($vaccines as $vaccine)
+                            @foreach($viewModel->vaccines() as $vaccine)
                                 <option value="{{ $vaccine->id }}"> {{ $vaccine->brand }}</option>
                             @endforeach
                         </select>
@@ -35,13 +35,13 @@
                         @enderror
                     </div>
                     <div class="col-span-4 sm:col-span-3">
-                        <label for="vaccine_id" class="block text-sm font-medium text-gray-700">Vaccinated By</label>
-                        <select id="vaccine_id" name="vaccine_id" autocomplete="vaccine_id-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            @foreach($staffs as $staff)
+                        <label for="staff_id" class="block text-sm font-medium text-gray-700">Vaccinated By</label>
+                        <select id="staff_id" name="staff_id" autocomplete="staff_id-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            @foreach($viewModel->staffs() as $staff)
                                 <option value="{{ $staff->id }}"> {{ $staff->name }}</option>
                             @endforeach
                         </select>
-                        @error('vaccine_id')
+                        @error('staff_id')
                             <div class="alert alert-danger text-sm text-red-800 p-1">{{ $message }}</div>
                         @enderror
                     </div>
@@ -53,13 +53,13 @@
                         @enderror
                     </div>
                     <div class="col-span-4 sm:col-span-3">
-                        <label for="patient_id" class="block text-sm font-medium text-gray-700">Dose</label>
-                        <select id="patient_id" name="patient_id" autocomplete="patient_id-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                <option value="first"> First </option>
+                        <label for="dose" class="block text-sm font-medium text-gray-700">Dose</label>
+                        <select id="dosedose" name="dose" autocomplete="dose-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option value="first" > First </option>
                                 <option value="second"> Second </option>
                                 <option value="booster"> Booster </option>
                         </select>
-                        @error('patient_id')
+                        @error('dose')
                             <div class="alert alert-danger text-sm text-red-800 p-1">{{ $message }}</div>
                         @enderror
                     </div>

@@ -12,6 +12,11 @@ class Vaccination extends Model
     protected $guarded =['id'];
     use HasFactory;
 
+    protected $dates = [
+        'date_for_vaccination'
+    ];
+
+
     public function vaccine(): BelongsTo
     {
         return $this->belongsTo(Vaccine::class);
@@ -26,5 +31,11 @@ class Vaccination extends Model
     {
         return $this->belongsTo(Patient::class);
     }
+
+    public function getFormattedDateForVaccinationAttribute()
+    {
+        return $this->date_for_vaccination->format('Y-m-d');
+    }
+
 
 }

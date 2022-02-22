@@ -9,77 +9,70 @@
 
     <div class="max-w-7xl mx-auto mt-16 px-4 sm:px-6 lg:px-8">
         <div class="container mx-auto">
-            <form action="{{ route('patients.update', $patient->id) }}" method="POST">
+            <form action="{{ route('vaccinations.update', $vaccination->id) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="grid grid-cols-6 gap-6">
-                    <div class="col-span-6 sm:col-span-3">
-                        <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                        <input type="text" name="name" id="name" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('name') border-red-500 @enderror" placeholder="eg: Ahmed Shaan" value="{{  $patient->name  }}">
-                        @error('name')
+                    <div class="col-span-4 sm:col-span-3">
+                        <label for="patient_id" class="block text-sm font-medium text-gray-700">Patient</label>
+                        <select id="patient_id" name="patient_id" autocomplete="patient_id-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            @foreach($viewModel->patients() as $patient)
+                                <option value="{{ $patient->id }}" @selected($patient->id == $vaccination->patient_id)> {{ $patient->government_id }} - {{ $patient->name }} </option>
+                            @endforeach
+                        </select>
+                        @error('patient_id')
+                            <div class="alert alert-danger text-sm text-red-800 p-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-span-4 sm:col-span-3">
+                        <label for="vaccine_id" class="block text-sm font-medium text-gray-700">Vaccine</label>
+                        <select id="vaccine_id" name="vaccine_id" autocomplete="vaccine_id-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            @foreach($viewModel->vaccines() as $vaccine)
+                                <option value="{{ $vaccine->id }}" @selected($vaccine->id == $vaccination->vaccine_id) > {{ $vaccine->brand }}</option>
+                            @endforeach
+                        </select>
+                        @error('vaccine_id')
+                        <div class="alert alert-danger text-sm text-red-800 p-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-span-4 sm:col-span-3">
+                        <label for="staff_id" class="block text-sm font-medium text-gray-700">Vaccinated By</label>
+                        <select id="staff_id" name="staff_id" autocomplete="staff_id-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            @foreach($viewModel->staffs() as $staff)
+                                <option value="{{ $staff->id }}" @selected($staff->id == $vaccination->staff_id)>{{ $staff->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('staff_id')
                             <div class="alert alert-danger text-sm text-red-800 p-1">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="col-span-6 sm:col-span-3">
-                        <label for="government_id" class="block text-sm font-medium text-gray-700">Government ID</label>
-                        <input type="text" name="government_id" id="government_id" autocomplete="given-government_id" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('government_id') border-red-500 @enderror" placeholder="eg: A000000 / Passport / WorkVisa" value="{{ $patient->government_id }}">
-                        @error('government_id')
-                        <div class="alert alert-danger text-sm text-red-800 p-1">{{ $message }}</div>
-                        @enderror
-
-                    </div>
-                    <div class="col-span-6 sm:col-span-3">
-                        <label for="case_id" class="block text-sm font-medium text-gray-700">Case ID</label>
-                        <input type="text" name="case_id" id="case_id" autocomplete="given-case_id" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('case_id') border-red-500 @enderror" placeholder="eg: 00091111" value="{{ $patient->case_id }}">
-                        @error('case_id')
-                        <div class="alert alert-danger text-sm text-red-800 p-1">{{ $message }}</div>
+                        <label for="date_for_vaccination" class="block text-sm font-medium text-gray-700">Date of Vaccination</label>
+                        <input type="date" name="date_for_vaccination" id="date_for_vaccination" autocomplete="given-date_for_vaccination" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('date_for_vaccination') border-red-500 @enderror" value="{{ $vaccination->formatted_date_for_vaccination }}">
+                        @error('date_for_vaccination')
+                            <div class="alert alert-danger text-sm text-red-800 p-1">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="col-span-6 sm:col-span-3">
-                        <label for="date_of_birth" class="block text-sm font-medium text-gray-700">Date of Birth</label>
-                        <input type="date" name="date_of_birth" id="date_of_birth" autocomplete="given-date_of_birth" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('date_of_birth') border-red-500 @enderror" value="{{ $patient->date_of_birth }}">
-                        @error('date_of_birth')
-                        <div class="alert alert-danger text-sm text-red-800 p-1">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="col-span-6 sm:col-span-3">
-                        <label for="contact" class="block text-sm font-medium text-gray-700">Contact</label>
-                        <input type="number" name="contact" id="contact" autocomplete="given-contact" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('contact') border-red-500 @enderror" placeholder="eg: 7626626" value="{{$patient->contact }}">
-                        @error('contact')
-                        <div class="alert alert-danger text-sm text-red-800 p-1">{{ $message }}</div>
+                    <div class="col-span-4 sm:col-span-3">
+                        <label for="dose" class="block text-sm font-medium text-gray-700">Dose</label>
+                        <select id="dose" name="dose" autocomplete="dose-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    <option value="first"  @selected($vaccination->dose == 'first')> First </option>
+                                    <option value="second"  @selected($vaccination->dose == 'second')> Second </option>
+                                    <option value="booster"  @selected($vaccination->dose == 'booster')> Booster </option>
+                            </select>
+                        @error('dose')
+                            <div class="alert alert-dangser text-sm text-red-800 p-1">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="col-span-6 sm:col-span-3">
-                        <label for="nationality" class="block text-sm font-medium text-gray-700">Nationality</label>
-                        <input type="text" name="nationality" id="nationality" autocomplete="given-nationality" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('nationality') border-red-500 @enderror" placeholder="Maldivian" value="{{ $patient->nationality }}">
-                        @error('nationality')
-                        <div class="alert alert-danger text-sm text-red-800 p-1">{{ $message }}</div>
+                        <label for="remarks" class="block text-sm font-medium text-gray-700">Remarks</label>
+                        <input type="text" name="remarks" id="remarks" autocomplete="given-remarks" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('remarks') border-red-500 @enderror" placeholder="eg: Alergies etc" value="{{ $vaccination->remarks }}">
+                        @error('remarks')
+                            <div class="alert alert-danger text-sm text-red-800 p-1">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="col-span-6 sm:col-span-3">
-                        <label for="permanent_address" class="block text-sm font-medium text-gray-700">Permanent Address</label>
-                        <input type="text" name="permanent_address" id="permanent_address" autocomplete="given-permanent_address" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('permanent_address') border-red-500 @enderror" placeholder="Laravel / R.Hulhudhuffaaru" value="{{ $patient->permanent_address }}">
-                        @error('permanent_address')
-                        <div class="alert alert-danger text-sm text-red-800 p-1">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="col-span-6 sm:col-span-3">
-                        <label for="current_address" class="block text-sm font-medium text-gray-700">Current Address</label>
-                        <input type="text" name="current_address" id="current_address" autocomplete="given-current_address" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('current_address') border-red-500 @enderror" placeholder="Marine Villa / R.Hulhudhuffaaru" value="{{ $patient->current_address }}">
-                        @error('current_address')
-                        <div class="alert alert-danger text-sm text-red-800 p-1">{{ $message }}</div>
-                        @enderror
-                        <div class="py-2">
-                            <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" value="" id="same_as_permanent_address" onchange="copyTextValue(this);">
-                            <label class="form-check-label inline-block text-gray-800 text-sm" for="flexCheckDefault">
-                                Same as Permanent Address
-                            </label>
-                        </div>
-                    </div>
-
                 </div>
-                <x-button type="submit" class="my-8 bg-teal-700 hover:bg-teal-500">Update</x-button>
+                <x-button type="submit" class="my-8 bg-teal-700 hover:bg-teal-500">Save</x-button>
             </form>
         </div>
     </div>

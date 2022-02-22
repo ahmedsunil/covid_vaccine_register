@@ -39,7 +39,6 @@
                         <select id="designation" name="designation" autocomplete="designation-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             <option value="registered_nurse" {{ old('designation') == 'registered_nurse' ? 'selected' : '' }}>Registered Nurse</option>
                             <option value="doctor" {{ old('designation') == 'doctor' ? 'selected' : '' }}>Doctor</option>
-                            <option value="helicopter">Helicopter</option>
                         </select>
                         @error('designation')
                             <div class="alert alert-danger text-sm text-red-800 p-1">{{ $message }}</div>
