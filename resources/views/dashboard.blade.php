@@ -12,6 +12,7 @@
            </h2>
        </div>
     </x-slot>
+
     <div class="md:pt-4 md:pb-8 mx-4 md:mx-10">
         <h1 class="text-gray-500 font-semibold tracking-wider text-lg mb-2">Total Percentage of Vaccination</h1>
         <div class="bg-gray-100 rounded-lg w-full h-auto py-4 flex flex-row justify-between divide-x divide-solid divide-gray-400  border border-gray-300">
@@ -59,7 +60,6 @@
                         <label class="text-gray-800 text-base font-semibold tracking-wider">Total</label>
                         <label class="text-green-800 text-2xl font-bold">{{ $total }}</label>
                     </div>
-
             @endforeach
         </div>
         <p class="mt-5 text-gray-400 text-sm text-center">Developed with &#10084; by Ahmed Sunil</p>

@@ -9,9 +9,23 @@ use Illuminate\Http\Request;
 
 class PatientsController extends Controller
 {
-    public function index()
+    public function __construct()
     {
-        $patients = Patient::paginate(6);
+        $this->middleware('admin')->except('index','show');
+    }
+
+    public function index(Request $request)
+    {
+        $search_query = $request->get('search');
+
+        $patients = Patient::query();
+
+        if ($search_query){
+            $patients->search($search_query);
+        }
+
+        $patients = $patients->paginate(6);
+
         return view('patients.index', compact('patients'));
     }
 

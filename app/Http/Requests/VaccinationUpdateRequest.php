@@ -11,9 +11,9 @@ class VaccinationUpdateRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize() : bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class VaccinationUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'vaccine_id' => 'required|exists:vaccines,id',
+            'patient_id' => 'required|exists:patients,id',
+            'staff_id' => 'required|exists:staff,id',
+            'date_for_vaccination' => 'required|date|after:yesterday',
+            'dose' => 'required|string|in:first,second,booster',
         ];
     }
 }

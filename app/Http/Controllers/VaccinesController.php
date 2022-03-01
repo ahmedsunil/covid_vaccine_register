@@ -9,9 +9,23 @@ use Illuminate\Http\Request;
 
 class VaccinesController extends Controller
 {
-    public function index()
+    public function __construct()
     {
-        $vaccines = Vaccine::paginate(6);
+        $this->middleware('admin')->except('index','show');
+    }
+
+    public function index(Request $request)
+    {
+        $search_query = $request->get('search');
+
+        $vaccines = Vaccine::query();
+
+        if ($search_query){
+            $vaccines->search($search_query);
+        }
+
+        $vaccines = $vaccines->paginate(6);
+
         return view('vaccines.index', compact('vaccines'));
     }
 

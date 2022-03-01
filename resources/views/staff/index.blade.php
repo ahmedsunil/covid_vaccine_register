@@ -7,7 +7,9 @@
                 </form>
             </div>
             <div class="flex flex-row-reverse">
-                <x-link-button link="{{ route('staff.create') }}" class="px-5 py-2 text-sm bg-teal-800 text-white rounded-md hover:bg-teal-700">Add</x-link-button>
+                @if(auth()->user()->role == 'admin')
+                    <x-link-button link="{{ route('staff.create') }}" class="px-5 py-2 text-sm bg-teal-800 text-white rounded-md hover:bg-teal-700">Add</x-link-button>
+                @endif
             </div>
         </div>
     </x-slot>
@@ -32,12 +34,14 @@
                             <x-td>
                                 <div class="flex flex-row justify-center">
                                     <a href="{{ route('staff.show', $staff->id) }}" class="px-4 bg-blue-300 rounded-md px-4 py-2 font-bold text-blue-700 hover:text-blue-800 hover:bg-blue-400">View</a>
-                                    <a href="{{ route('staff.edit', $staff->id) }}" class="mx-2 px-4 bg-teal-300 rounded-md px-4 py-2 font-bold text-teal-700 hover:text-teal-800 hover:bg-teal-400">Edit</a>
-                                    <form action="{{ route('staff.destroy', $staff->id) }}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="bg-red-300 rounded-md px-4 py-2 font-bold text-red-700 hover:text-red-800 hover:bg-red-400">Delete</button>
-                                    </form>
+                                    @if(auth()->user()->role == 'admin')
+                                        <a href="{{ route('staff.edit', $staff->id) }}" class="mx-2 px-4 bg-teal-300 rounded-md px-4 py-2 font-bold text-teal-700 hover:text-teal-800 hover:bg-teal-400">Edit</a>
+                                        <form action="{{ route('staff.destroy', $staff->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="bg-red-300 rounded-md px-4 py-2 font-bold text-red-700 hover:text-red-800 hover:bg-red-400">Delete</button>
+                                        </form>
+                                    @endif
                                 </div>
                             </x-td>
                         </tr>

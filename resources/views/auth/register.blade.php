@@ -1,12 +1,13 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
+<x-app-layout>
+    <x-slot name="header">
+            <div class="flex flex-row-reverse">
+                <x-link-button link="{{ route('patients.create') }}" class="px-5 py-2 text-sm bg-teal-800 text-white rounded-md hover:bg-teal-700">Add</x-link-button>
+            </div>
+    </x-slot>
         <!-- Validation Errors -->
+    <div class="py-8 md:pb-12 mx-4 md:mx-10">
+        <div class="mx-auto py-5 sm:px-6 lg:px-8">
+            <div class="container mx-auto px-40">
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
         <form method="POST" action="{{ route('register') }}">
@@ -24,6 +25,14 @@
                 <x-label for="email" :value="__('Email')" />
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+            </div>
+
+            <div class="mt-4">
+                <x-label for="role" :value="__('Role')" />
+                <x-select name="role">
+                    <option value="admin">Administrator</option>
+                    <option value="viewer">Viewer</option>
+                </x-select>
             </div>
 
             <!-- Password -->
@@ -46,14 +55,10 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ml-4">
+                <x-button class="ml-4 bg-green-700 focus:bg-teal-700">
                     {{ __('Register') }}
                 </x-button>
             </div>
         </form>
-    </x-auth-card>
-</x-guest-layout>
+            </div></div></div>
+</x-app-layout>

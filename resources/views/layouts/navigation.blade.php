@@ -46,9 +46,11 @@
 
                     <x-slot name="content">
                         <!-- Authentication -->
-                        <x-dropdown-link :href="route('vaccines.index')">
-                            {{ __('Settings') }}
-                        </x-dropdown-link>
+                        @if(auth()->user()->role == 'admin')
+                            <x-dropdown-link :href="route('register')">
+                                {{ __('Add User') }}
+                            </x-dropdown-link>
+                        @endif
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 

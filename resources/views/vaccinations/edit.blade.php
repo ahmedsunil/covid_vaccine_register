@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex flex-row justify-between">
             <h2 class="font-semibold text-xl text-white leading-tight">
-                {{ __('Edit Patient') }}
+                {{ __('Edit Vaccination') }}
             </h2>
         </div>
     </x-slot>
@@ -56,9 +56,12 @@
                     <div class="col-span-4 sm:col-span-3">
                         <label for="dose" class="block text-sm font-medium text-gray-700">Dose</label>
                         <select id="dose" name="dose" autocomplete="dose-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                    <option value="first"  @selected($vaccination->dose == 'first')> First </option>
-                                    <option value="second"  @selected($vaccination->dose == 'second')> Second </option>
-                                    <option value="booster"  @selected($vaccination->dose == 'booster')> Booster </option>
+                            @foreach($viewModel->doses() as $dose)
+                                <option value="{{ $dose }}" @selected($vaccination->dose == $dose)> {{ ucfirst($dose) }} </option>
+                            @endforeach
+{{--                                    <option value="first"  @selected($vaccination->dose == 'first')> First </option>--}}
+{{--                                    <option value="second"  @selected($vaccination->dose == 'second')> Second </option>--}}
+{{--                                    <option value="booster"  @selected($vaccination->dose == 'booster')> Booster </option>--}}
                             </select>
                         @error('dose')
                             <div class="alert alert-dangser text-sm text-red-800 p-1">{{ $message }}</div>
@@ -66,7 +69,7 @@
                     </div>
                     <div class="col-span-6 sm:col-span-3">
                         <label for="remarks" class="block text-sm font-medium text-gray-700">Remarks</label>
-                        <input type="text" name="remarks" id="remarks" autocomplete="given-remarks" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('remarks') border-red-500 @enderror" placeholder="eg: Alergies etc" value="{{ $vaccination->remarks }}">
+                        <input type="text" name="remarks" id="remarks" autocomplete="given-remarks" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('remarks') border-red-500 @enderror" placeholder="eg: Allergies etc" value="{{ $vaccination->remarks }}">
                         @error('remarks')
                             <div class="alert alert-danger text-sm text-red-800 p-1">{{ $message }}</div>
                         @enderror

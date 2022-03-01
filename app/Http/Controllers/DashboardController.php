@@ -44,15 +44,3 @@ class DashboardController extends Controller
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-//{{ $vaccinations->where('dose', 'first')->count() }}

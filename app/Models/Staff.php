@@ -9,4 +9,9 @@ class Staff extends Model
 {
     protected $guarded =['id'];
     use HasFactory;
+
+    public function scopeSearch($query, $search_query)
+    {
+        $query->where("record_card_number", "like", "%" . $search_query . "%");
+    }
 }

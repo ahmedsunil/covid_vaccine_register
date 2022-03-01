@@ -16,7 +16,6 @@ class Vaccination extends Model
         'date_for_vaccination'
     ];
 
-
     public function vaccine(): BelongsTo
     {
         return $this->belongsTo(Vaccine::class);
@@ -36,6 +35,20 @@ class Vaccination extends Model
     {
         return $this->date_for_vaccination->format('Y-m-d');
     }
+
+    public function scopeSearch($query, $search_query)
+    {
+        $query->where("patient_id", "like", "%" . $search_query . "%")
+            ->orWhere(function ($query) use ($search_query){
+                $query->whereHas("patient", function ($query) use ($search_query){
+                    $query->where("government_id", "like", "%" . $search_query . "%")
+                        ->orWhere("patient_id", "like", "%" . $search_query . "%");
+                });
+            });
+
+    }
+
+
 
 
 }

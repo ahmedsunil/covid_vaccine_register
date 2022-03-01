@@ -7,7 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vaccine extends Model
 {
+    use HasFactory;
+
     protected $guarded =['id'];
 
-    use HasFactory;
+    public function scopeSearch($query, $search_query)
+    {
+        $query->where("brand", "like", "%" . $search_query . "%");
+    }
+
 }
+

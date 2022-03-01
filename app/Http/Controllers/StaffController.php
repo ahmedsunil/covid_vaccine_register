@@ -11,9 +11,22 @@ use Illuminate\Http\Request;
 
 class StaffController extends Controller
 {
-    public function index()
+    public function __construct()
     {
-        $staffs = Staff::paginate(6);
+        $this->middleware('admin')->except('index','show');
+    }
+
+    public function index(Request $request)
+    {
+        $search_query = $request->get('search');
+
+        $staffs = Staff::query();
+
+        if ($search_query){
+            $staffs->search($search_query);
+        }
+
+        $staffs = $staffs->paginate(6);
         return view('staff.index', compact('staffs'));
     }
 
