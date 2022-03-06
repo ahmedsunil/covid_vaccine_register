@@ -6,11 +6,13 @@
     "license": "MIT",
     "require": {
         "php": "^8.0",
+        "asantibanez/livewire-select": "^2.1",
         "fruitcake/laravel-cors": "^2.0.5",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.0",
         "laravel/sanctum": "^2.14",
         "laravel/tinker": "^2.7",
+        "livewire/livewire": "^2.10",
         "spatie/laravel-view-models": "^1.5"
     },
     "require-dev": {

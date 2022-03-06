@@ -19,8 +19,15 @@
         </style>
     </head>
     <body class="antialiased bg-gray-800">
-    <h1 class="text-center text-gray-300 text-2xl my-4 p-4">Covid Vaccination Dashboard</h1>
-
+    <div class="flex flex-row justify-between px-10 my-2 py-4">
+        <h1 class="text-center text-gray-300 text-2xl">Covid Vaccination Dashboard</h1>
+        @auth()
+            <a href="/dashboard" class="text-gray-200 text-xs py-2 px-4 bg-gray-700 hover:bg-gray-600 rounded-md transition ease-in">Admin Panel</a>
+        @endauth
+        @guest()
+        <a href="/login" class="text-gray-200 text-xs py-2 px-4 bg-gray-700 hover:bg-gray-600 rounded-md transition ease-in">Login</a>
+        @endguest
+    </div>
         <div class="flex flex-row-reverse justify-around border border-gray-400 mx-10 p-2 rounded-md">
             <h3 class="text-gray-300">
                 Total Eligible for Vaccination - {{ $total_eligible }}
@@ -79,6 +86,7 @@
 
             @endforeach
         </div>
-
+        <p class="pt-2 text-gray-400 text-sm text-center">Developed with &#10084; by Ahmed Sunil</p>
+    </div>
     </body>
 </html>

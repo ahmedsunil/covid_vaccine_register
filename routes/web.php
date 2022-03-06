@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PatientsController;
 use App\Http\Controllers\StaffController;
@@ -14,6 +15,10 @@ Route::get('/',[WelcomeController::class,'index'])->name('welcome');
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::resource('users', RegisteredUserController::class)->only([
+        'index','create', 'store', 'destroy'
+    ]);
 
     Route::resources([
         'vaccines' => VaccinesController::class,

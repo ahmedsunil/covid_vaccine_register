@@ -18,6 +18,12 @@ class RegisteredUserController extends Controller
         $this->middleware('admin');
     }
 
+    public function index()
+    {
+        $users = User::paginate(6);
+        return view('users', compact('users'));
+    }
+
     /**
      * Display the registration view.
      *
@@ -56,6 +62,13 @@ class RegisteredUserController extends Controller
 
 //        Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+//        return redirect(RouteServiceProvider::HOME);
+        return to_route('users.index');
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return to_route('users.index');
     }
 }

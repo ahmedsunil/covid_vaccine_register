@@ -5,15 +5,14 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('welcome') }}">
                         <x-application-logo class="block h-10 w-auto fill-current text-white" />
                     </a>
                 </div>
-
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Overview') }}
                     </x-nav-link>
                     <x-nav-link :href="route('vaccinations.index')" :active="request()->routeIs('vaccinations.*')">
                         {{ __('Vaccinations') }}
@@ -26,6 +25,11 @@
                     </x-nav-link> <x-nav-link :href="route('vaccines.index')" :active="request()->routeIs('vaccines.*')">
                         {{ __('Vaccines') }}
                     </x-nav-link>
+                    @if(auth()->user()->role == 'admin')
+                        <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+                            {{ __('Users') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -46,11 +50,6 @@
 
                     <x-slot name="content">
                         <!-- Authentication -->
-                        @if(auth()->user()->role == 'admin')
-                            <x-dropdown-link :href="route('register')">
-                                {{ __('Add User') }}
-                            </x-dropdown-link>
-                        @endif
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
