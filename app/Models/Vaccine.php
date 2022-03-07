@@ -17,4 +17,3 @@ class Vaccine extends Model
     }
 
 }
-

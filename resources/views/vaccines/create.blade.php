@@ -42,13 +42,13 @@
                         @enderror
                     </div>
                     <div class="col-span-4 sm:col-span-3">
-                        <label for="patients_id" class="block text-sm font-medium text-gray-700">Number of Doses</label>
-                        <select id="patients_id" name="patients_id" autocomplete="patients_id-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            <option value="1" {{ old('patients_id') == 1 ? 'selected' : '' }}>1</option>
-                            <option value="2" {{ old('patients_id') == 2 ? 'selected' : '' }}>2</option>
-                            <option value="booster" {{ old('patients_id') == 'booster' ? 'selected' : '' }}>Booster</option>
+                        <label for="number_of_doses" class="block text-sm font-medium text-gray-700">Number of Doses</label>
+                        <select id="number_of_doses" name="number_of_doses" autocomplete="number_of_doses-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <option value="1" {{ old('number_of_doses') == 1 ? 'selected' : '' }}>1</option>
+                            <option value="2" {{ old('number_of_doses') == 2 ? 'selected' : '' }}>2</option>
+                            <option value="booster" {{ old('number_of_doses') == 'booster' ? 'selected' : '' }}>Booster</option>
                         </select>
-                        @error('patients_id')
+                        @error('number_of_doses')
                             <div class="alert alert-danger text-sm text-red-800 p-1">{{ $message }}</div>
                         @enderror
                     </div>

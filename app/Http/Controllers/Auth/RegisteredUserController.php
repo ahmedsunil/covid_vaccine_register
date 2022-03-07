@@ -68,7 +68,11 @@ class RegisteredUserController extends Controller
 
     public function destroy(User $user)
     {
-        $user->delete();
-        return to_route('users.index');
+        if ($user->id != auth()->id()){
+            $user->delete();
+            return to_route('users.index')->with('success_toats','User deleted!');
+        }
+        return to_route(404);
+
     }
 }

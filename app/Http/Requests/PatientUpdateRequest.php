@@ -27,6 +27,7 @@ class PatientUpdateRequest extends FormRequest
             'name' => 'string|required|max:255',
             'government_id' => 'string|required|unique:patients,government_id,' . $this->patient->id,
             'case_id' => 'string|required|unique:patients,case_id,' . $this->patient->id,
+            'sex' => 'string|in:male,female',
             'date_of_birth' => 'date|required',
             'current_address' => 'string|required|max:255',
             'permanent_address' => 'string|required|max:255',

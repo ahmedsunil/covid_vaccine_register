@@ -18,6 +18,7 @@
                 <div><h2 class="text-white px-4 py-2 bg-teal-600 my-4 rounded-md">Permanent Address</h2> <span class="text-gray-600">{{ $patient->permanent_address }}</span> </div>
                 <div><h2 class="text-white px-4 py-2 bg-teal-600 my-4 rounded-md">Contact</h2> <span class="text-gray-600">{{ $patient->contact }}</span> </div>
                 <div><h2 class="text-white px-4 py-2 bg-teal-600 my-4 rounded-md">Nationality</h2> <span class="text-gray-600">{{ $patient->nationality }}</span> </div>
+                <div><h2 class="text-white px-4 py-2 bg-teal-600 my-4 rounded-md">Gender</h2> <span class="text-gray-600">{{ ucfirst($patient->sex) }}</span> </div>
 
             </div>
         </div>

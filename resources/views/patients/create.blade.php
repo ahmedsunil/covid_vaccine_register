@@ -34,6 +34,16 @@
                             <div class="alert alert-danger text-sm text-red-800 p-1">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="col-span-4 sm:col-span-3">
+                        <label for="sex" class="block text-sm font-medium text-gray-700">Gender</label>
+                        <select id="sex" name="sex" autocomplete="sex-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <option value="male" {{ old('sex') == 'male' ? 'selected' : '' }}>Male</option>
+                            <option value="female" {{ old('sex') == 'female' ? 'selected' : '' }}>Female</option>
+                        </select>
+                        @error('sex')
+                        <div class="alert alert-danger text-sm text-red-800 p-1">{{ $message }}</div>
+                        @enderror
+                    </div>
                     <div class="col-span-6 sm:col-span-3">
                         <label for="date_of_birth" class="block text-sm font-medium text-gray-700">Date of Birth</label>
                         <input type="date" name="date_of_birth" id="date_of_birth" autocomplete="given-date_of_birth" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('date_of_birth') border-red-500 @enderror" value="{{ old('date_of_birth') }}">

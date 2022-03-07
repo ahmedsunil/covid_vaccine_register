@@ -37,7 +37,7 @@ class VaccinesController extends Controller
     public function store(VaccinesStoreRequest $request)
     {
         Vaccine::create($request->validated());
-        return to_route('vaccines.index')->with('toast_success', 'Vaccine was created!');
+        return to_route('vaccines.index');
     }
 
     public function show(Vaccine $vaccine)

@@ -21,7 +21,7 @@ class VaccinesStoreRequest extends FormRequest
      *
      * @return array
      */
-    public function rules() : array
+    public function rules()
     {
         return [
             'brand' => 'required|string|max:255|unique:vaccines,brand',

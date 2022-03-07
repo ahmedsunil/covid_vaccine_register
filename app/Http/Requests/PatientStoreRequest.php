@@ -27,6 +27,7 @@ class PatientStoreRequest extends FormRequest
             'name' => 'string|required|max:255',
             'government_id' => 'string|required|unique:patients,government_id',
             'case_id' => 'string|required|unique:patients,case_id',
+            'sex' => 'string|in:male,female',
             'date_of_birth' => 'date|required',
             'current_address' => 'string|required|max:255',
             'permanent_address' => 'string|required|max:255',

@@ -21,9 +21,28 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $user1 = User::create([
-            'name' => 'Ahmed Sunil',
-            'email' => 'iahmednill@gmail.com',
-            'password' => Hash::make('Root@1234!')
+            'name' => 'Hussain Samaah',
+            'email' => 'samaah@gmail.com',
+            'role' => 'admin',
+            'password' => Hash::make('root')
+        ]);
+        $user2 = User::create([
+            'name' => 'Ibrahim Samaah',
+            'email' => 'ibrahim@gmail.com',
+            'role' => 'viewer',
+            'password' => Hash::make('root')
+        ]);
+        $user3 = User::create([
+            'name' => 'Ali Samaah',
+            'email' => 'ali@gmail.com',
+            'role' => 'admin',
+            'password' => Hash::make('root')
+        ]);
+        $user4 = User::create([
+            'name' => 'Ahmed Samaah',
+            'email' => 'adam@gmail.com',
+            'role' => 'viewer',
+            'password' => Hash::make('root')
         ]);
 
         $staff1 = Staff::create([
@@ -69,7 +88,7 @@ class DatabaseSeeder extends Seeder
             'type' => 'mRNA',
             'approved_for' => 'Age 12 and older',
             'manufacturer' => 'ModernaTX, Inc.',
-            'number_of_doses' => '2 doses',
+            'number_of_doses' => 2
         ]);
 
         $vaccine2 = Vaccine::create([
@@ -78,7 +97,7 @@ class DatabaseSeeder extends Seeder
             'type' => 'mRNA',
             'approved_for' => 'Age 5 and older',
             'manufacturer' => 'BioNTech Manufacturing GmbH',
-            'number_of_doses' => '2 doses',
+            'number_of_doses' => 2
         ]);
 
         $vaccine3 = Vaccine::create([
@@ -87,7 +106,7 @@ class DatabaseSeeder extends Seeder
             'type' => 'Viral vector-based',
             'approved_for' => 'Age 18 and older',
             'manufacturer' => 'AstraZeneca',
-            'number_of_doses' => '2 doses',
+            'number_of_doses' => 2
         ]);
 
         $vaccine4 = Vaccine::create([
@@ -96,7 +115,7 @@ class DatabaseSeeder extends Seeder
             'type' => 'Viral vector-based',
             'approved_for' => 'Age 18 and older',
             'manufacturer' => 'Janssen Inc',
-            'number_of_doses' => '2 doses',
+            'number_of_doses' => 2
         ]);
 
         $vaccine5= Vaccine::create([
@@ -105,7 +124,7 @@ class DatabaseSeeder extends Seeder
             'type' => 'Inactivated',
             'approved_for' => 'Age 18 and older',
             'manufacturer' => 'Sinopharm',
-            'number_of_doses' => '2 doses',
+            'number_of_doses' => 2
         ]);
 
         $vaccine6 = Vaccine::create([
@@ -114,7 +133,7 @@ class DatabaseSeeder extends Seeder
             'type' => 'DNA',
             'approved_for' => 'Age 18 and older',
             'manufacturer' => 'Serum Institute of India Pvt Ltd',
-            'number_of_doses' => '2 doses',
+            'number_of_doses' => 2
         ]);
     }
 }

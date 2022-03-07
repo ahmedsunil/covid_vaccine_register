@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('government_id')->unique();
             $table->string('case_id')->unique();
+            $table->string('sex');
             $table->date('date_of_birth');
             $table->string('current_address');
             $table->string('permanent_address');

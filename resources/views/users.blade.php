@@ -29,7 +29,7 @@
                                             @method('DELETE')
                                             <button type="submit" class="bg-red-300 rounded-md px-4 py-2 font-bold text-red-700 hover:text-red-800 hover:bg-red-400">Delete</button>
                                         </form>
-                                </div>
+                                    </div>
                             </x-td>
                         </tr>
                     @endforeach
