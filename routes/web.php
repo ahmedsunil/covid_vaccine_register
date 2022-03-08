@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[WelcomeController::class,'index'])->name('welcome');
 
+Route::resource('users', RegisteredUserController::class)->only([
+    'index','create', 'store', 'destroy'
+]);
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 Route::group(['middleware' => 'auth'], function () {
     Route::resources([
         'vaccines' => VaccinesController::class,
@@ -20,11 +26,8 @@ Route::group(['middleware' => 'auth'], function () {
         'vaccinations' => VaccinationsController::class,
     ]);
 
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::resource('users', RegisteredUserController::class)->only([
-        'index','create', 'store', 'destroy'
-    ]);
+
 });
 
 

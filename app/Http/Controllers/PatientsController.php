@@ -37,7 +37,7 @@ class PatientsController extends Controller
     public function store(PatientStoreRequest $request)
     {
         Patient::create($request->validated());
-        return to_route('patients.index')->with('toast_warning','Patient was created!');
+        return to_route('patients.index')->with('toast_success','Patient Created!');
     }
 
     public function show(Patient $patient)
@@ -53,13 +53,13 @@ class PatientsController extends Controller
     public function update(PatientUpdateRequest $request, Patient $patient)
     {
         $patient->update($request->validated());
-        return to_route('patients.index')->with('toast_warning','Patient was updated!');
+        return to_route('patients.index')->with('toast_success','Patient Updated!');
     }
 
     public function destroy(Patient $patient)
     {
         $patient->delete();
-        return to_route('patients.index')->with('toast_warning','Patient was deleted!');
+        return to_route('patients.index')->with('toast_error','Patient Deleted!');
     }
 
 }

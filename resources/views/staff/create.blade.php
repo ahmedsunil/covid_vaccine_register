@@ -25,7 +25,6 @@
                         @error('government_id')
                             <div class="alert alert-danger text-sm text-red-800 p-1">{{ $message }}</div>
                         @enderror
-
                     </div>
                     <div class="col-span-6 sm:col-span-3">
                         <label for="record_card_number" class="block text-sm font-medium text-gray-700">Record Card Number</label>

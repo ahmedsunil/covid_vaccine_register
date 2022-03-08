@@ -39,7 +39,7 @@ class VaccinationsController extends Controller
     public function store(VaccinationStoreRequest $request)
     {
         Vaccination::create($request->validated());
-        return to_route('vaccinations.index')->with('toast_success','Vaccination was created!');
+        return to_route('vaccinations.index')->with('toast_success','Vaccination created!');
     }
 
     public function show(Vaccination $vaccination)
@@ -56,13 +56,12 @@ class VaccinationsController extends Controller
     public function update(VaccinationUpdateRequest $request, Vaccination $vaccination)
     {
         $vaccination->update($request->all());
-        return to_route('vaccinations.index')->with('toast_success','Vaccination was updated!');
+        return to_route('vaccinations.index')->with('toast_success','Vaccination updated!');
     }
 
     public function destroy(Vaccination $vaccination)
     {
-        //TODO
         $vaccination->delete();
-        return to_route('vaccinations.index');
+        return to_route('vaccinations.index')->with('toast_error','Vaccination Deleted!');
     }
 }

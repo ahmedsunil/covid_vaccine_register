@@ -39,7 +39,7 @@ class StaffController extends Controller
     public function store(StaffStoreRequest $request)
     {
         Staff::create($request->validated());
-        return to_route('staff.index')->with('toast_success','Staff was saved!');
+        return to_route('staff.index')->with('toast_success','Staff Created!');
     }
 
     public function show(Staff $staff)
@@ -55,12 +55,12 @@ class StaffController extends Controller
     public function update(StaffUpdateRequest $request, Staff $staff)
     {
         $staff->update($request->validated());
-        return to_route('staff.index')->with('toast_success','Staff was updated!');
+        return to_route('staff.index')->with('toast_success','Staff Updated!');
     }
 
     public function destroy(Staff $staff)
     {
         $staff->delete();
-        return to_route('staff.index')->with('toast_warning','Staff was deleted!');
+        return to_route('staff.index')->with('toast_error','Staff Deleted!');
     }
 }
