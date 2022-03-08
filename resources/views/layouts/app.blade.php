@@ -9,10 +9,9 @@
         <link rel="stylesheet" href="{{ asset('css/font.css') }}">
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-{{--        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />--}}
-        <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
         <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="{{ asset('js/functions.js') }}" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" defer></script>
 
@@ -20,22 +19,15 @@
     <body class="font-sans antialiased text-sm">
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
-            <!-- Page Heading -->
             <header class="bg-teal-600 shadow">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     {{ $header }}
                 </div>
             </header>
-            <!-- Page Content -->
             <main>
                 {{ $slot }}
             </main>
         </div>
-        <script>
-            $(document).ready(function (){
-                $('#patient_id').select2();
-            });
-
-        </script>
+        @include('sweetalert::alert')
     </body>
 </html>

@@ -7,6 +7,7 @@ use App\Http\Requests\VaccinesUpdateRequest;
 use App\Models\Vaccine;
 use Illuminate\Http\Request;
 
+
 class VaccinesController extends Controller
 {
     public function __construct()
@@ -37,7 +38,7 @@ class VaccinesController extends Controller
     public function store(VaccinesStoreRequest $request)
     {
         Vaccine::create($request->validated());
-        return to_route('vaccines.index');
+        return to_route('vaccines.index')->with('toast_success','Vaccine Created');
     }
 
     public function show(Vaccine $vaccine)
@@ -53,13 +54,13 @@ class VaccinesController extends Controller
     public function update(VaccinesUpdateRequest $request, Vaccine $vaccine)
     {
         $vaccine->update($request->validated());
-        return to_route('vaccines.index')->with('toast_success','Vaccine was updated!');
+        return to_route('vaccines.index')->with('toast_success','Vaccine Updated!');
     }
 
     public function destroy(Vaccine $vaccine)
     {
         $vaccine->delete();
-        return to_route('vaccines.index')->with('toast_danger','Vaccine was Deleted!');;
+        return to_route('vaccines.index')->with('toast_error','Vaccine Deleted!');
     }
 
 }

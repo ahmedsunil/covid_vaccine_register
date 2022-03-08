@@ -1,0 +1,29 @@
+How to implement sweet alert in your laravel application
+========================================================
+
+1- install realrashid composer package
+composer require realrashid/sweet-alert
+
+2. add the package to service provider
+
+config/app.php
+
+eg:
+'providers' => [
+    /*
+    * Package Service Providers...
+    */
+    RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+],
+
+3. @include('sweetalert::alert') use this in main layout
+
+4. php artisan sweetalert:publish
+
+5. Set the Default Toast Position in config/sweetalert.php file OR use the position() helper method!
+
+6. \RealRashid\SweetAlert\ToSweetAlert::class,
+into the $middlewareGroups of your app/Http/Kernel.php file.
+
+7.  now use     return redirect('tasks')->with('success', 'Task Created Successfully!');
+in ur controllers

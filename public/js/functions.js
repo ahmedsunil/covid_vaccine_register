@@ -3,3 +3,34 @@ function copyTextValue(bf) {
     document.getElementById("current_address").value = text1;
 }
 
+$(document).ready(function (){
+    $('#patient_id').select2();
+});
+
+$(document).ready(function(){
+    $('.vaccines-delete').click(function (e){
+        e.preventDefault();
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                if (result.value) {
+                    let form = document.getElementById('delete-vaccine');
+                    form.submit();
+                }
+                // Swal.fire(
+                //     'Deleted!',
+                //     'Your file has been deleted.',
+                //     'success'
+                // )
+
+            }
+        })
+    })
+})
