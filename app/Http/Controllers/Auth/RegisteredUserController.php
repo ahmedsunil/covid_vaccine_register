@@ -70,9 +70,9 @@ class RegisteredUserController extends Controller
     {
         if ($user->id != auth()->id()){
             $user->delete();
-            return to_route('users.index')->with('success_toats','User deleted!');
+            return to_route('users.index')->with('toast_error','User Deleted!');
         }
-        return to_route(404);
+        return to_route('users.index')->with('toast_error','Cannot Delete!');
 
     }
 }

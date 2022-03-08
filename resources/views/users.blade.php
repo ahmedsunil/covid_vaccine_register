@@ -24,10 +24,10 @@
                             <x-td>{{ $user->created_at }} </x-td>
                             <x-td>
                                 <div class="flex flex-row justify-center">
-                                        <form action="{{ route('users.destroy', $user->id) }}" method="post">
+                                        <form action="{{ route('users.destroy', $user->id) }}" method="post" id="delete-user">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="bg-red-300 rounded-md px-4 py-2 font-bold text-red-700 hover:text-red-800 hover:bg-red-400">Delete</button>
+                                            <button type="submit" class="user-delete bg-red-300 rounded-md px-4 py-2 font-bold text-red-700 hover:text-red-800 hover:bg-red-400">Delete</button>
                                         </form>
                                     </div>
                             </x-td>
@@ -41,3 +41,28 @@
         </div>
     </div>
 </x-app-layout>
+
+<script>
+    $(document).ready(function(){
+        $('.user-delete').click(function (e){
+            e.preventDefault();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    if (result.value) {
+                        let form = document.getElementById('delete-user');
+                        form.submit();
+                    }
+                }
+            })
+        })
+    })
+
+</script>

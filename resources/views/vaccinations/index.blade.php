@@ -39,10 +39,10 @@
                                     @if(auth()->user()->role == 'admin')
                                         <a href="{{ route('vaccinations.edit', $vaccination->id) }}" class="mx-2 px-4 bg-teal-300 rounded-md px-4 py-2 font-bold text-teal-700 hover:text-teal-800 hover:bg-teal-400">Edit</a>
 
-                                        <form action="{{ route('vaccinations.destroy', $vaccination->id) }}" method="post">
+                                        <form action="{{ route('vaccinations.destroy', $vaccination->id) }}" method="post" id="delete-vaccination">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="bg-red-300 rounded-md px-4 py-2 font-bold text-red-700 hover:text-red-800 hover:bg-red-400">Delete</button>
+                                            <button type="submit" class="vaccination-delete bg-red-300 rounded-md px-4 py-2 font-bold text-red-700 hover:text-red-800 hover:bg-red-400">Delete</button>
                                         </form>
                                     @endif
                                 </div>
@@ -57,3 +57,34 @@
         </div>
     </div>
 </x-app-layout>
+
+<script>
+    $(document).ready(function(){
+        $('.vaccination-delete').click(function (e){
+            e.preventDefault();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    if (result.value) {
+                        let form = document.getElementById('delete-vaccination');
+                        form.submit();
+                    }
+                    // Swal.fire(
+                    //     'Deleted!',
+                    //     'Your file has been deleted.',
+                    //     'success'
+                    // )
+
+                }
+            })
+        })
+    })
+
+</script>
