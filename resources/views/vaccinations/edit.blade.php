@@ -48,7 +48,7 @@
                     </div>
                     <div class="col-span-6 sm:col-span-3">
                         <label for="date_for_vaccination" class="block text-sm font-medium text-gray-700">Date of Vaccination</label>
-                        <input type="date" name="date_for_vaccination" id="date_for_vaccination" autocomplete="given-date_for_vaccination" class="mt-1 block w-full h-10 py-2 px-3 border border-gray-200 bg-white rounded-md shadow-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm @error('date_for_vaccination') border-red-500 @enderror" value="{{ $vaccination->formatted_date_for_vaccination }}">
+                        <input type="date" name="date_for_vaccination" id="date_for_vaccination" autocomplete="given-date_for_vaccination" class="mt-1 block w-full h-10 py-2 px-3 border border-gray-200 bg-white rounded-md shadow-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm @error('date_for_vaccination') border-red-500 @enderror" value="{{ $vaccination->date_for_vaccination }}">
                         @error('date_for_vaccination')
                             <div class="alert alert-danger text-sm text-red-800 p-1">{{ $message }}</div>
                         @enderror

@@ -59,20 +59,25 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
-
 //        Auth::login($user);
-
 //        return redirect(RouteServiceProvider::HOME);
         return to_route('users.index');
     }
 
     public function destroy(User $user)
     {
-        if ($user->id != auth()->id()){
-            $user->delete();
-            return to_route('users.index')->with('toast_error','User Deleted!');
+        $is_current_user = $user->id == auth()->user()->id;
+
+        if ($is_current_user){
+            return to_route('users.index')->with('toast_error','Cannot Delete!');
         }
-        return to_route('users.index')->with('toast_error','Cannot Delete!');
+
+        if (! $user->delete()){
+            return abort(500,'User cannot be deleted');
+        }
+
+        return to_route('users.index')->with('toast_error','User Deleted!');
 
     }
+
 }

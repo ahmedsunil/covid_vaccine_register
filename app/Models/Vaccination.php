@@ -12,9 +12,11 @@ class Vaccination extends Model
     protected $guarded = ['id'];
     use HasFactory;
 
-    protected $dates = [
-        'date_for_vaccination'
-    ];
+//    protected $dates = [
+//        'created_at',
+//        'updated_at',
+//        'date_for_vaccination'
+//    ];
 
     public function vaccine(): BelongsTo
     {
@@ -31,10 +33,10 @@ class Vaccination extends Model
         return $this->belongsTo(Patient::class);
     }
 
-    public function getFormattedDateForVaccinationAttribute()
-    {
-        return $this->date_for_vaccination->format('d-m-Y');
-    }
+//    public function getFormattedDateForVaccinationAttribute()
+//    {
+//        return $this->date_for_vaccination->format('d-m-Y');
+//    }
 
     public function scopeSearch($query, $search_query)
     {

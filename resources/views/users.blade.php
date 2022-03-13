@@ -24,10 +24,10 @@
                             <x-td>{{ $user->created_at }} </x-td>
                             <x-td>
                                 <div class="flex flex-row justify-center">
-                                        <form action="{{ route('users.destroy', $user->id) }}" method="post" id="delete-user">
+                                        <form action="{{ route('users.destroy', $user->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="user-delete bg-red-300 rounded-md px-4 py-2 font-bold text-red-700 hover:text-red-800 hover:bg-red-400">Delete</button>
+                                            <button type="submit" class="delete-link bg-red-300 rounded-md px-4 py-2 font-bold text-red-700 hover:text-red-800 hover:bg-red-400">Delete</button>
                                         </form>
                                     </div>
                             </x-td>

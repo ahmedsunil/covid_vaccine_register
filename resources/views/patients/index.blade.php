@@ -37,10 +37,10 @@
                                         <a href="{{ route('patients.show', $patient->id) }}" class="px-4 bg-blue-300 rounded-md px-4 py-2 font-bold text-blue-700 hover:text-blue-800 hover:bg-blue-400">View</a>
                                         @if(auth()->user()->role == 'admin')
                                             <a href="{{ route('patients.edit', $patient->id) }}" class="mx-2 px-4 bg-teal-300 rounded-md px-4 py-2 font-bold text-teal-700 hover:text-teal-800 hover:bg-teal-400">Edit</a>
-                                            <form action="{{ route('patients.destroy', $patient->id) }}" method="post" id="delete-patient">
+                                            <form action="{{ route('patients.destroy', $patient->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="patient-delete bg-red-300 rounded-md px-4 py-2 font-bold text-red-700 hover:text-red-800 hover:bg-red-400">Delete</button>
+                                                <button type="submit" class="delete-link bg-red-300 rounded-md px-4 py-2 font-bold text-red-700 hover:text-red-800 hover:bg-red-400">Delete</button>
                                             </form>
                                         @endif
                                     </div>
